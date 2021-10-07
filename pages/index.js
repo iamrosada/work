@@ -21,7 +21,7 @@ export const HOST_EVENT = gql`
 `;
 export default function Home() {
   const { error, loading, data } = useQuery(HOST_EVENT, {
-    variables: { eventId: "65fa3cd6-684f-4d9e-acf8-96e7f7dcaba4" },
+    /*  variables: { eventId: "65fa3cd6-684f-4d9e-acf8-96e7f7dcaba4" }, */
   });
 
   console.log("r", data);
