@@ -1,20 +1,16 @@
 const ListHost = ({ data }) => {
   /* const { data = [] } = props; */
-  const trans = Object.values(data?.event.hosts?.edges);
-  console.log("trans", trans);
+  const getData = Object.values(data?.event.hosts?.edges);
+  console.log("getData", getData);
 
   return (
     <div>
-      <div>{data?.event.name}</div>
-      {trans.map((t) => {
+      <h2>{data?.event.name}</h2>
+      {getData.map((t) => {
         return (
-          <div key={t.node.profile.firstName}>
-            <h1>{t.node.profile.email}</h1>
+          <div key={t.node.profile.email}>
             <h1>{t.node.profile.firstName}</h1>
-            {/*  <div>
-              <span>{t.node.profile.firstName}</span>
-              <span>{t.node.profile.email}</span>
-            </div> */}
+            <h1>{t.node.profile.email}</h1>
           </div>
         );
       })}
