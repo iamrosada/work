@@ -1,6 +1,5 @@
 import { gql, useMutation } from "@apollo/client";
 import { useEffect, useState } from "react";
-/* import QuestionsComp from "../components/Questions"; */
 
 const CREATE_QUESTION_MUTATION = gql`
   mutation createQuestionMutation(
@@ -16,11 +15,7 @@ const CREATE_QUESTION_MUTATION = gql`
   }
 `;
 
-var content = "kub";
-const anonymous = false;
-const roomId = "83964f8f-8a37-4f7c-81d6-eab95d6bbf68";
-
-const QuestionsComp = ({ questionCreate, setFormState, formState, geT }) => {
+const QuestionsComp = ({ questionCreate, getData }) => {
   let input;
   return (
     <div>
@@ -41,14 +36,6 @@ const QuestionsComp = ({ questionCreate, setFormState, formState, geT }) => {
       >
         <div>
           <input
-            className="mb2"
-            /*  value={formState.content}
-            onChange={(e) =>
-              setFormState({
-                ...formState,
-                content: e.target.value,
-              })
-            } */
             ref={(node) => (input = node)}
             type="text"
             placeholder="Ask your best question"
@@ -57,44 +44,32 @@ const QuestionsComp = ({ questionCreate, setFormState, formState, geT }) => {
         <button type="submit">Submit</button>
       </form>
       <div>
-        {Object.values(geT?.questionCreate || []).map((t) => {
+        {Object.values(getData?.questionCreate || []).map((t) => {
           return <h1 key={t.id}>{t.content}</h1>;
         })}
       </div>
     </div>
   );
 };
+
 export default function CreateQuestions() {
-  /* const [formState, setFormState] = useState({
-    content: " ",
-  }); */
-  const [geT, setGet] = useState();
-  console.log(CREATE_QUESTION_MUTATION);
+  const [getData, setGetData] = useState();
+
   const [questionCreate, { data, loading, error }] = useMutation(
-    CREATE_QUESTION_MUTATION,
-    {
-      variables: {
-        content,
-        anonymous,
-        roomId,
-      },
-    }
+    CREATE_QUESTION_MUTATION
   );
 
   useEffect(() => {
-    setGet(data);
+    setGetData(data);
   }, [data]);
-  const getData = Object.values(data?.questionCreate || []);
+
+  const logGetData = Object.values(data?.questionCreate || []);
+
   console.log("IS DATA----->", data);
-  console.log("IS GetDATA----->", getData);
+  console.log("IS GetlogGetDataQuestions----->", logGetData);
+
   if (loading) return "Submitting...";
   if (error) return `Submission error! ${error.message}`;
-  return (
-    <QuestionsComp
-      questionCreate={questionCreate}
-      /*  setFormState={setFormState}
-      formState={formState} */
-      geT={geT}
-    />
-  );
+
+  return <QuestionsComp questionCreate={questionCreate} getData={getData} />;
 }
