@@ -5,7 +5,7 @@ _**EX: Qual era o problema antes de ser ajustado. Como o problema foi resolvido,
 
 <br>
 
-**PR relacionado:** <!--Adicionar link do PR que estiver relacionado a esta tarefa. **Ex: Um PR de backend**-->
+**PR relacionado:** <!--Adicionar link do PR que estiver relacionado a esta tarefa. **Ex: Um PR de uma feature**-->
 
 <br>
 
@@ -33,5 +33,3 @@ _**EX: Qual era o problema antes de ser ajustado. Como o problema foi resolvido,
 - [ ] Adicionei as labels do PR
 - [ ] Adicionei os reviewers do PR
 - [ ] Está pronto para o review!
-
-
