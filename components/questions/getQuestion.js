@@ -1,10 +1,12 @@
 import { gql } from "@apollo/client";
 
+//($id: ID!, $order: [QuestionOrderInput!])
+
 const GET_QUESTIONS_QUERY = gql`
-  query HostEventSessionQuestions($id: ID!, $order: [QuestionOrderInput!]) {
+  query HostEventSessionQuestions($order: [QuestionOrderInput!]) {
     viewer {
       id
-      eventSession(id: $id) {
+      eventSession(id: "3957d399-abf4-4348-91e1-007f728cab10") {
         id
         slug
         room {
