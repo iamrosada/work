@@ -1,5 +1,5 @@
 import { gql, useMutation } from "@apollo/client";
-import QuestionsComp from "../components/Questions";
+import CreateQuestions from "../components/Questions/question";
 
 const CREATE_QUESTION_MUTATION = gql`
   mutation createQuestionMutation($input: HostQuestionCreateMutationInput!) {
@@ -14,11 +14,11 @@ const CREATE_QUESTION_MUTATION = gql`
 `;
 
 export default function Questions() {
-  const [questionCreate, { loading, error, data }] = useMutation(
+  /*const [questionCreate, { loading, error, data }] = useMutation(
     CREATE_QUESTION_MUTATION
   );
   if (loading) return <p>Loading</p>;
-  if (error) return console.log("the error is ", error);
+  if (error) return console.log("the error is ", error);*/
 
-  return <QuestionsComp questionCreate={questionCreate} data={data} />;
+  return <CreateQuestions />;
 }
