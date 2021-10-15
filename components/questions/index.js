@@ -9,55 +9,61 @@ const GetQuestion = () => {
   console.log("test", getData);
 
   if (loading) return <p>Loading the Question</p>;
-  if (error) return <p>error fecthing</p>;
+  if (error) return <p>error fecthing {console.log("error", error)}</p>;
 
-  return getData.map(() => {
-    let input;
-
+  return getData.map((t) => {
     return (
-      <div key={data.viewer.id}>
-        <form
-          onSubmit={(e) => {
-            e.preventDefault();
-            if (!input.value.trim()) {
-              return;
-            }
-            input.value = "";
-          }}
-        >
-          <input ref={(node) => (input = node)} />
-          <button type="submit">up</button>
-        </form>
+      <div key={t.viewer.id}>
+        <form>{t.eventSession.room.questions}</form>
       </div>
     );
   });
 };
 
 const CreateQuestion = ({ data, questionCreate }) => {
-  let input;
+  const onSubmit = async (values) => {
+    e.preventDefault();
+    if (!values.trim()) {
+      return;
+    }
+
+    const input = values;
+    questions({ variables: { input } });
+  };
   return (
-    <form
-      onSubmit={(e) => {
-        e.preventDefault();
-        if (!input.value.trim()) {
-          return;
-        }
-        questionCreate({ variable: input });
-        input.value = "";
-      }}
-    >
-      <input ref={(node) => (input = node)} />
+    <form onSubmit={onSubmit}>
+      <input ref={(value) => (input = value)} placeholder="Enter a Question" />
       <button type="submit">up</button>
     </form>
   );
 };
 
 const QuestionsComp = ({ data, questionCreate }) => {
+  let input;
+  const onSubmit = async (values) => {
+    values.preventDefault();
+    /*   if (!input.values.trim()) {
+      return;
+    } */
+
+    input = values;
+    questionCreate({ variables: { input } });
+  };
   return (
-    <>
-      <CreateQuestion data={data} questionCreate={questionCreate} />
-      <GetQuestion />
-    </>
+    <form onSubmit={onSubmit}>
+      <input
+        ref={(values) => (input = values)}
+        placeholder="Enter a Question"
+      />
+      <button type="submit">up</button>
+    </form>
   );
 };
 export default QuestionsComp;
+/*  <>
+      <CreateQuestion data={data} questionCreate={questionCreate} />
+      <GetQuestion />
+    </> */
+/*  if (!input.value.trim()) {
+          return;
+        } */
