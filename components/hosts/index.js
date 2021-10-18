@@ -1,5 +1,4 @@
 const ListHost = ({ data }) => {
-  /* const { data = [] } = props; */
   const getData = Object.values(data?.event.hosts?.edges);
   console.log("getData", getData);
 
